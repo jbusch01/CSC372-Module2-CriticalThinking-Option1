@@ -20,7 +20,7 @@ public class CheckingAccount extends BankAccount {
 
         if (amount > availableFunds) {
             JOptionPane.showMessageDialog(null,
-                "Withdrawal denied.\nInsufficient funds/n(Including $200 overdraft protection)",
+                "Withdrawal denied.\nInsufficient funds.\n(Including $200 overdraft protection)",
                 "Transaction error",
                 JOptionPane.ERROR_MESSAGE);
             return;
