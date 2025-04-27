@@ -53,7 +53,8 @@ public class BankAccountGUI extends JFrame implements ActionListener {
         if (command.equals("Deposit")) {
             userAccount.deposit(amount);
         } else if (command.equals("Withdraw")) {
-            ((CheckingAccount) userAccount).processWithdrawal(amount); // Temporarily casts userAccount as CheckingAccount to processs oversraft fee, if applicable
+            ((CheckingAccount) userAccount).processWithdrawal(amount);
+            // Temporarily casts userAccount as CheckingAccount to processs oversraft fee, if applicable
         } else if (command.equals("Show Balance")) {
             // No aCtion. Refreshes display
         }
