@@ -1,4 +1,7 @@
 // CheckingAccount subclass that inherits from BankAccount and includes an instance-specific interest rate
+
+import javax.swing.JOptionPane;
+
 public class CheckingAccount extends BankAccount {
     private double interestRate;
     private double overdraftFee = 30.0;
@@ -16,14 +19,20 @@ public class CheckingAccount extends BankAccount {
         double availableFunds = getAccountBalance() + 200.0; // Allow overraft up to $200
 
         if (amount > availableFunds) {
-            System.out.println("Withdrawal denied. Insufficient funds (including overdraft protection of $200).");
+            JOptionPane.showMessageDialog(null,
+                "Withdrawal denied.\nInsufficient funds/n(Including $200 overdraft protection)",
+                "Transaction error",
+                JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (getAccountBalance() - amount < 0) {
-            // First overdraft event applies a $30 overdraft fee
+            // First overdraft event applies overdraft fee
             setBalance(getAccountBalance() - amount - overdraftFee);
-            System.out.printf("Your account balance is negative. $%.2f overdraft fee applied.%n", overdraftFee);
+            JOptionPane.showMessageDialog(null,
+                String.format("Your account balance is negative.\nA %.2f overdraft fee has been applied.", overdraftFee),
+                "Overdraft Notice",
+                JOptionPane.WARNING_MESSAGE);
         } else {
             withdrawal(amount);
         }
