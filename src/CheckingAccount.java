@@ -13,7 +13,15 @@ public class CheckingAccount extends BankAccount {
     // Withdrawal method. Includes logic for applying overdraft fee
 
     public void processWithdrawal(double amount) {
+        double availableFunds = getAccountBalance() + 200.0; // Allow overraft up to $200
+
+        if (amount > availableFunds) {
+            System.out.println("Withdrawal denied. Insufficient funds (including overdraft protection of $200).");
+            return;
+        }
+
         if (getAccountBalance() - amount < 0) {
+            // First overdraft event applies a $30 overdraft fee
             setBalance(getAccountBalance() - amount - overdraftFee);
             System.out.printf("Your account balance is negative. $%.2f overdraft fee applied.%n", overdraftFee);
         } else {
