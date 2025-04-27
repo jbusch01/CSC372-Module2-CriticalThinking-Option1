@@ -8,7 +8,7 @@ public class BankAccountGUI extends JFrame implements ActionListener {
     private JLabel balanceLabel;
 
     public BankAccountGUI() {
-        userAccount = new CheckingAccount("John", "Smith", 1234, 2.5);
+        userAccount = new CheckingAccount("John", "Smith", 1234, 2.5); // Balance initiates to $0
 
         setTitle("Bank Account Information");
         setSize(400, 200);
