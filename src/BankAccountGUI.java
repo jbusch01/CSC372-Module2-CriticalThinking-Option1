@@ -8,7 +8,7 @@ public class BankAccountGUI extends JFrame implements ActionListener {
     private JLabel balanceLabel;
 
     public BankAccountGUI() {
-        userAccount = new BankAccount("John", "Smith", 1234);
+        userAccount = new CheckingAccount("John", "Smith", 1234, 2.5);
 
         setTitle("Bank Account Information");
         setSize(400, 200);
@@ -53,9 +53,9 @@ public class BankAccountGUI extends JFrame implements ActionListener {
         if (command.equals("Deposit")) {
             userAccount.deposit(amount);
         } else if (command.equals("Withdraw")) {
-            userAccount.withdrawal(amount);
+            ((CheckingAccount) userAccount).processWithdrawal(amount); // Temporarily casts userAccount as CheckingAccount to processs oversraft fee, if applicable
         } else if (command.equals("Show Balance")) {
-            // no action needed. Refreshes display
+            // No aCtion. Refreshes display
         }
 
         balanceLabel.setText("Balance: $" + String.format("%.2f", userAccount.getAccountBalance()));
